@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Timer_App"
         mc:Ignorable="d"
-        Title="Timer" Height="250" Width="400" HorizontalAlignment="Center" Background="DarkCyan">
+        Title="Timer" Height="250" Width="400" WindowStartupLocation="CenterScreen" Background="DarkCyan">
     <Grid>
         <Label x:Name="label" Content="Timerdummy" HorizontalAlignment="Left" Margin="121,48,0,0" VerticalAlignment="Top" Height="35" Width="143" Background="AntiqueWhite"/>
         <Button x:Name="startButton" Content="Start" HorizontalAlignment="Left" Margin="76,145,0,0" VerticalAlignment="Top" Width="46" Click="startButton_Click"/>
