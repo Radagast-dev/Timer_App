@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Timer" Height="250" Width="400" WindowStartupLocation="CenterScreen" Background="DarkCyan">
     <Grid>
-        <Label x:Name="label" Content="Timerdummy" HorizontalAlignment="Left" Margin="121,48,0,0" VerticalAlignment="Top" Height="35" Width="143" Background="AntiqueWhite"/>
+        <Label x:Name="label" Content="00:00" HorizontalAlignment="Left" Margin="121,48,0,0" VerticalAlignment="Top" Height="35" Width="143" Background="AntiqueWhite"/>
         <Button x:Name="startButton" Content="Start" HorizontalAlignment="Left" Margin="76,145,0,0" VerticalAlignment="Top" Width="46" Click="startButton_Click"/>
         <Button x:Name="stopButton" Content="Stop" HorizontalAlignment="Left" Margin="268,145,0,0" VerticalAlignment="Top" Width="46" Click="stopButton_Click"/>
         

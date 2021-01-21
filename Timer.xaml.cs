@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -20,42 +21,45 @@ namespace Timer_App
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {            
-        DispatcherTimer disTimer = new DispatcherTimer();       //datum und Uhrzeit
+    {
+        DispatcherTimer newTimer = new DispatcherTimer();       //datum und Uhrzeit
         public MainWindow()
         {
             InitializeComponent();
         }
         
         private bool timerStarted = false;                      //bool für start-stopp bedingung festzulegen
+        int count = 0;
 
         private void timerStart(object sender, EventArgs e)     //eventmethode? start
         {
+            //Tickhandler für Zyklen
+            newTimer.Tick += new EventHandler(startButton_Click);                 //subscribe .tick an event handler
+            newTimer.Interval = TimeSpan.FromMilliseconds(1000);            //definiere angezeigtes zeitintervall
+            newTimer.Start();                                       //starte timer
 
-            disTimer.Interval = new TimeSpan(0,0,1);            //definiere angezeigtes zeitintervall
-            disTimer.Tick += new EventHandler(startButton_Click); //subscribe .tick an event handler
-            disTimer.Start();                                       //starte timer
-                
             timerStarted = true;                                //setze bool auf true für stopp-bed
 
             return;
         }
 
-        private void timerStop(object sender, EventArgs e)
+        private void timerStop()
         {
-            disTimer.Interval = new TimeSpan(0, 0, 1);
-            disTimer.Tick += new EventHandler(stopButton_Click);
-            disTimer.Stop();
+            newTimer.Tick += new EventHandler(stopButton_Click); //subscribe .tick an event handler
+            newTimer.Interval = TimeSpan.FromMilliseconds(1000);            //definiere angezeigtes zeitintervall
+            newTimer.Stop();
 
             timerStarted = false;
 
             return;
         }
 
+        //Buttons
         private void startButton_Click(object sender, EventArgs e)
         {
+            count++;
+            label.Content = count;
             timerStart(sender, e);
-            label.Content = DateTime.Now.ToString();
         }
 
         private void stopButton_Click(object sender, EventArgs e)
@@ -64,7 +68,7 @@ namespace Timer_App
             {
                 try
                 {
-                    timerStop(sender, e);
+                    timerStop();
                     MessageBox.Show("Timer stopped!");
                 }
                 catch (Exception exc)
