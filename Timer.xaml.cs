@@ -74,7 +74,6 @@ namespace Timer_App
                     label.Content = labelDownInt;
                 }
             }
-
         } 
 
         private void stopButton_Click(object sender, EventArgs e)
@@ -139,6 +138,18 @@ namespace Timer_App
             {
                 MessageBox.Show(cExc.ToString());
             }
+        }
+
+        private void bttf_time_machine_gif_MediaEnded(object sender, RoutedEventArgs e)
+        { 
+            bttf_time_machine_gif.Position = new TimeSpan(0, 0, 1);
+            bttf_time_machine_gif.Play();
+        }
+
+        private void bttf_theme_song_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            bttf_theme_song.Position = new TimeSpan(0, 0, 0, 1);
+            bttf_theme_song.Play();
         }
     }
 }
