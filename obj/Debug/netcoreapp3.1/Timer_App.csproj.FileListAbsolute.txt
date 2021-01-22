@@ -16,3 +16,4 @@ C:\Users\Radagast\source\repos\Timer_App.git\obj\Debug\netcoreapp3.1\Timer_App.c
 C:\Users\Radagast\source\repos\Timer_App.git\obj\Debug\netcoreapp3.1\Timer_App.dll
 C:\Users\Radagast\source\repos\Timer_App.git\obj\Debug\netcoreapp3.1\Timer_App.pdb
 C:\Users\Radagast\source\repos\Timer_App.git\obj\Debug\netcoreapp3.1\Timer_App.genruntimeconfig.cache
+C:\Users\Radagast\source\repos\Timer_App.git\obj\Debug\netcoreapp3.1\Timer_App.csprojAssemblyReference.cache

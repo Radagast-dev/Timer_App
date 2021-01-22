@@ -26,16 +26,16 @@ namespace Timer_App
         public MainWindow()
         {
             InitializeComponent();
-        }
-        
-        private bool timerStarted = false;                      //bool für start-stopp bedingung festzulegen
-        int count = 0;
 
+            newTimer.Tick += new EventHandler(startButton_Click);                 //subscribe .tick an event handler
+            newTimer.Interval = TimeSpan.FromMilliseconds(1000);                  //timespan
+        }
+
+        //Timer
+        private bool timerStarted = false;                      //bool für start-stopp bedingung festzulegen
+        
         private void timerStart(object sender, EventArgs e)     //eventmethode? start
         {
-            //Tickhandler für Zyklen
-            newTimer.Tick += new EventHandler(startButton_Click);                 //subscribe .tick an event handler
-            newTimer.Interval = TimeSpan.FromMilliseconds(1000);            //definiere angezeigtes zeitintervall
             newTimer.Start();                                       //starte timer
 
             timerStarted = true;                                //setze bool auf true für stopp-bed
@@ -45,8 +45,7 @@ namespace Timer_App
 
         private void timerStop()
         {
-            newTimer.Tick += new EventHandler(stopButton_Click); //subscribe .tick an event handler
-            newTimer.Interval = TimeSpan.FromMilliseconds(1000);            //definiere angezeigtes zeitintervall
+            //definiere angezeigtes zeitintervall
             newTimer.Stop();
 
             timerStarted = false;
@@ -57,14 +56,30 @@ namespace Timer_App
         //Buttons
         private void startButton_Click(object sender, EventArgs e)
         {
-            count++;
-            label.Content = count;
             timerStart(sender, e);
-        }
+
+            if (countUp.IsChecked == true)
+            {
+                int labelUpInt = Convert.ToInt32(label.Content);
+                labelUpInt++;
+                label.Content = labelUpInt;
+            }
+            
+            else if (countDown.IsChecked == true)
+            {
+                int labelDownInt = Convert.ToInt32(label.Content);
+                if (labelDownInt != 0)
+                {
+                    labelDownInt--;
+                    label.Content = labelDownInt;
+                }
+            }
+
+        } 
 
         private void stopButton_Click(object sender, EventArgs e)
         {
-            if(timerStarted == true)
+            if (timerStarted == true)
             {
                 try
                 {
@@ -75,6 +90,54 @@ namespace Timer_App
                 {
                     MessageBox.Show(exc.ToString());
                 }
+            }
+        }
+
+        private void setInput_Click(object sender, RoutedEventArgs e)
+        {
+            string input = inputBox.Text.ToString();
+            label.Content = input;
+            inputBox.Text = "";
+        }
+
+
+        //Checkboxes
+        private void countUp_Checked(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (countUp.IsChecked == true)
+                {
+                    countDown.IsChecked = false;
+                }
+
+                else if (countDown.IsChecked == true)
+                {
+                    countUp.IsChecked = false;
+                }
+            }
+            catch (Exception cExc)
+            {
+                MessageBox.Show(cExc.ToString());
+            }
+        }
+        private void countDown_Checked(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (countDown.IsChecked == true)
+                {
+                    countUp.IsChecked = false;
+                }
+
+                else if (countUp.IsChecked == true)
+                {
+                    countDown.IsChecked = false;
+                }
+            }
+            catch (Exception cExc)
+            {
+                MessageBox.Show(cExc.ToString());
             }
         }
     }
